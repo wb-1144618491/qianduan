@@ -1,3 +1,3 @@
 function index() {
-  return <div> 首页 </div>;
+  return <div>修改内容index</div>;
 }
