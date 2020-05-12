@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <tip></tip>
+        <navbar :name='true' title="雪碧"></navbar>
+    </div>
+</body>
+<script>
+    Vue.component('tip', {
+        template: `
+        <div>全局</div>
+        `
+    })
+    new Vue({
+
+        el: '#app',
+        data: {
+            title: '极限挑战'
+        },
+        components: {
+            'navbar': {
+                props: {
+                    title: String,
+                    'name': Boolean
+                },
+                template: `
+              <div v-if='name'>{{title}}</div>
+              `
+            }
+        }
+    })
+</script>
+
+</html>

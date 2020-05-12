@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for='item in name'>
+                {{item}}
+            </li>
+        </ul>
+        <button @click="add">添加</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            name: ['于谦', '岳云鹏', '郭得刚', '秦霄贤']
+        },
+        methods: {
+            add() {
+                this.name.push('抖音'),
+                    setTimeout(() => {
+                        this.name.reverse()
+                    }, 1000)
+            }
+        },
+    })
+</script>
+
+</html>

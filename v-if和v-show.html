@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+  </head>
+
+  <body>
+    <!-- v-html v-model 使用 v-if和v-show使用 -->
+    <div id="app">
+      <p :[attr]="id">比好</p>
+      <input type="text" v-model="title" />
+      <h1 v-html="title"></h1>
+      <input type="text" v-model="score" />
+      <p v-if="score >90">优秀</p>
+      <p v-else-if="score>80 && score<=90">良好</p>
+      <p v-else-if="score>70 && score<=80">中等</p>
+      <p v-else-if="score>=60 && score<=70">一般</p>
+      <p v-else="score<60">不及格</p>
+      <input type="button" @click="dispaly" value="显示" />
+      <h1 v-show="isshow">你真棒</h1>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        title: "你好",
+        score: 90,
+        isshow: false,
+        attr: "style",
+        id: "color:red",
+      },
+      methods: {
+        dispaly() {
+          this.isshow = !this.isshow;
+        },
+      },
+    });
+  </script>
+</html>

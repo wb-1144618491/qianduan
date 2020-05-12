@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <navbar :title="tip" v-on:back="get"></navbar>
+    </div>
+</body>
+<script>
+    Vue.component('navbar', {
+        props: ['title'],
+        template: `
+       <div @click="back">
+       {{title}}
+       {{name}}
+       </div>
+       `,
+        data: function () {
+            return {
+                name: '网易云'
+            }
+
+        },
+        methods: {
+            back() {
+                this.$emit('back', '没有你的岁月')
+            }
+        },
+        mounted() {
+            setTimeout(() => {
+                this.name = "QQ音乐"
+            }, 1000);
+        },
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            tip: "朋友圈"
+        },
+        methods: {
+            get(...args) {
+                console.log(args)
+            }
+        },
+    })
+</script>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <navbar>
+            <template v-slot:wx>
+                <div>微信</div>
+            </template>
+        </navbar>
+    </div>
+</body>
+<script>
+    /* 
+    为什么使用插槽
+    插槽可以赋予组件更大的灵活性和定制性
+    */
+    Vue.component('navbar', {
+        props: [''],
+        template: `
+        <div>
+            <slot name='wx'></slot>
+            </div>
+        `
+    })
+    new Vue({
+        el: "#app",
+        dta: {
+
+        }
+    })
+</script>
+
+</html>

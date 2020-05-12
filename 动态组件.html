@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li @click='change(1)'>新闻</li>
+            <li @click="change(2)">体育</li>
+        </ul>
+
+        <!-- <template v-if="type==1">
+                <news></news>
+            </template>
+            <template v-else>
+                <sports></sports>
+            </template> -->
+        <!-- 缓存keep-alive -->
+        <keep-alive include='news,sports'>
+            <component v-bind:is='currTab'></component>
+        </keep-alive>
+
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            type: 1,
+            currTab: 'news',
+            compname: 'sports'
+        },
+
+        methods: {
+            change(type) {
+                this.type = type;
+                if (type == 1) {
+                    this.currTab = 'news'
+                } else {
+                    this.currTab = 'sports'
+                }
+            }
+        },
+        components: {
+            news: {
+                name: 'news',
+                template: `<div>新闻联播</div>`,
+                mounted() {
+                    console.log('新闻')
+                }
+            },
+            sports: {
+                naem: 'sports',
+                template: `<div>体育新闻</div>`,
+                mounted() {
+                    console.log('体育新闻')
+                }
+            }
+        },
+    })
+</script>
+
+</html>

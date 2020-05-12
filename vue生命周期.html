@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3 @click='submit'>{{title}}</h3>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: '生命周期'
+        },
+        methods: {
+            submit() {
+                console.log('方法')
+            }
+        },
+        // 在beforecreate中无法得到当前vue实例的属性和方法，以为此时还未完成生命周期和属性、事件的初始化
+        beforeCreate() {
+            console.log(this.title, 'beforeCreate')
+        },
+        // created完成了编译工作但是没有完成挂载工作，也就是说此时无法使用$el
+        created() {
+            this.title = "vue生命周期"
+            console.log(this.$el, 'created')
+        },
+        // beforemount 挂载
+        beforeMount() {
+            console.log(this.$el)
+            console.log('beforemount')
+        },
+        mounted() {
+            console.log(this.$el)
+            setTimeout(() => {
+                this.title = "学习生命周期"
+            }, 1000)
+            console.log('mounted')
+        },
+        // 更新
+        beforeUpdate() {
+            console.log('beforeupdate')
+        },
+        updated() {
+            console.log('updated')
+        },
+        // 销毁
+        beforeDestroy() {
+            console.log('beforedestroy')
+        },
+        destroyed() {
+            console.log('destroyed')
+        },
+    })
+</script>
+
+</html>

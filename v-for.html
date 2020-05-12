@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for='item in key'><a :href="item.blog">{{item.blog}}</a></li>
+            <li v-for="(value,index) in name" :key="index">{{value}}{{index}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+
+            key: [{
+                name: '张三',
+                blog: '三'
+            }, {
+                name: '李四',
+                blog: '四'
+            }, {
+                name: '王五',
+                blog: '五'
+            }],
+            name: ['张三', '李四', '王五', '赵六'],
+
+        }
+
+    })
+</script>
+
+</html>

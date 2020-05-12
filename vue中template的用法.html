@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- template 一般用于循环语句：条件或循环，但是不能在tempate上使用key -->
+        <template v-if="isshow">
+            <div>
+                template模板
+            </div>
+        </template>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            isshow: true
+        }
+    })
+</script>
+
+</html>

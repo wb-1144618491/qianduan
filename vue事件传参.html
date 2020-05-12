@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='submit($event)'>{{title}}</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            title: '伍佰—挪威的森林'
+        },
+        methods: {
+            submit(event) {
+                console.log(event)
+            }
+        },
+    })
+</script>
+
+</html>

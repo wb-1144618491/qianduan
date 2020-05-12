@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{reverse}}</h1>
+    </div>
+</body>
+<script>
+    //  计算属性是一种特殊的属性，它不是方法
+    /* 
+    计算属性和方法的区别
+    1、使用上的区别，计算属性不需要加括号调用，方法需要
+    2、计算属性的方法的写法基本一致，但是计算属性内部必须有return返回值
+    3、计算属性有缓存，方法没有，也就是说计算属性是依赖现有属性的，属性变化后计算属性才重新求值
+    4、计算属性是依赖属性，方法未必
+    5,、计算属性和方法不要重名、否则计算属性名称被覆盖
+    */
+
+    new Vue({
+        el: "#app",
+        data: {
+            title: "计算属性",
+        },
+        computed: {
+            reverse() {
+                console.log(this.title, "计算属性");
+                //   字符串反序
+                /* 
+          split()方法用于把一个字符串分割成字符串数组。
+          reverse()方法用于颠倒数组元素的顺序
+          jion()方法用于把数组中的所有元素放入一个字符串
+
+              
+            */
+                return this.title.split("").reverse().join("");
+            },
+        },
+        watch: {
+            title(val) {
+                console.log(val, "属性监听");
+            },
+        },
+        mounted() {
+            setTimeout(() => {
+                this.title = "凤宝宝";
+            }, 2000);
+        },
+    });
+</script>
+
+</html>

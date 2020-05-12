@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .color {
+            color: gold;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .orange {
+            color: orange;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h3 :class="{color:true}">{{title}}</h3>
+        <div>
+            <input type="text" v-model='psw'>
+            <span :style="color">{{tip}}</span>
+            <span :class="{green,orange,red}">{{tip}}</span>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'class和style绑定',
+            psw: '',
+            green: true,
+            orange: false,
+            red: false,
+            color: {},
+            tip: '请输入'
+        },
+        methods: {
+            rs() {
+                this.green = false;
+                this.red = false;
+                this.orange = false
+            }
+        },
+        watch: {
+            psw(newVal, oldVal) {
+                this.rs();
+                var pwd = String(this.psw);
+                if (pwd == '') {
+                    this.tip = '请输入'
+                } else if (pwd.length < 6) {
+                    this.tip = "强度弱",
+                        this.green = true,
+                        this.color = {
+                            color: "green"
+                        }
+                } else if (pwd.length >= 6 && pwd.length < 12) {
+                    this.tip = '强度中',
+                        this.orange = true,
+                        this.color = {
+                            color: 'yellow'
+                        }
+                } else {
+                    this.tip = '强度强',
+                        this.red = true,
+                        this.color = {
+                            color: 'red'
+                        }
+                }
+            }
+        },
+    })
+</script>
+
+</html>

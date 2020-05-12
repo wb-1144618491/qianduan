@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <dropdown :cars="carname" @selectcar="selectcar"></dropdown>
+        <droplist :carlist="carlist"></droplist>
+    </div>
+</body>
+<script>
+    // 下来框
+    Vue.component("dropdown", {
+        props: ["cars"],
+        template: `<div>
+            <select v-model='car'>
+                <template v-for='car in cars'>
+                    <option :value='car'>{{car}}</option>
+                    </template>
+                </select>
+            </div>`,
+        computed: {
+            car: {
+                get: function () {
+                    return this.cars[0];
+                },
+                set: function (val) {
+                    return this.$emit("selectcar", val);
+                },
+            },
+        },
+    });
+    // 列表框
+    Vue.component("droplist", {
+        props: ["carlist"],
+        template: `<div>
+        <ul>
+            <template v-for='car in carlist'>
+                <li>{{car}}</li>
+                </template>
+            </ul>
+            </div>`,
+    });
+    new Vue({
+        el: "#app",
+        data: {
+            car: "奔驰",
+            cars: {
+                '奔驰': ["c200", "c260", "c300", "e260", "e300"],
+                '宝马': ["320", "340", "760", "x3", "x5"],
+                '奥迪': ["A4", "A6", "A8", "Q5", "Q7"],
+            },
+        },
+        computed: {
+            carname() {
+                return Object.keys(this.cars);
+            },
+            carlist() {
+                return this.cars[this.car];
+            },
+        },
+        methods: {
+            selectcar(car) {
+                this.car = car;
+            },
+        },
+    });
+</script>
+
+</html>
